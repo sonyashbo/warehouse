@@ -2,16 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import {Provider} from "react-redux";
+import {combineReducers} from "redux";
+import glovesReducer from "./reducers/glovesReducer";
+import store from "./store";
+import {BrowserRouter} from 'react-router-dom'
+import beaniesReducer from "./reducers/beaniesReducer";
+import facemasksReducer from "./reducers/facemasksReducer";
+
+const reducer = combineReducers({
+    gloves: glovesReducer,
+    beanies: beaniesReducer,
+    facemasks: facemasksReducer
+})
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+    <Provider store={store(reducer)}>
+        {/*<BrowserRouter>*/}
+            <App/>
+        {/*</BrowserRouter>*/}
+    </Provider>,
+    document.getElementById('root')
+)
