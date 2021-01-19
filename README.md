@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+### Warehouse Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Table of contents
+* [Description](#description)
+* [Demo](#demo)
+* [Caching](#caching)
+* [API bug workaround](#api-bug-workaround)
+* [Backend repository](#backend-repository)
 
-## Available Scripts
 
-In the project directory, you can run:
+### Description
+This is a web application for viewing information about three kinds of products - gloves, beanies and facemasks - in a warehouse.
 
-### `npm start`
+### Demo
+The application is deployed to Heroku and can be accessed by the following link:  
+[https://nameless-sierra-57591.herokuapp.com/](https://nameless-sierra-57591.herokuapp.com/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Caching
+To boost the performance, caching was implemented on the backend.
+On application startup, only the general information for products is retrieved.
+Then, when user wants to see the details of a product and its availability in stock, application makes
+an API call for the corresponding manufacturer and caches all the values for its products.
+It may take some time, but after that availability information about the products of the same manufacturer
+will be available much faster.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Cached values are saved for 5 minutes, as remote API also has a cache for 5 minutes only.
 
-### `npm test`
+### API bug workaround
+One of the APIs contains an intentional bug - sometimes instead of array of objects it returns a string "[]".
+If that happens, application will continue making API calls until an array of objects is returned.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Backend repository
+Backend repository can be found on [https://github.com/sonyashbo/warehouse-backend](https://github.com/sonyashbo/warehouse-backend)
