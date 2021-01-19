@@ -8,6 +8,7 @@ import glovesReducer from './reducers/glovesReducer'
 import store from './store'
 import beaniesReducer from './reducers/beaniesReducer'
 import facemasksReducer from './reducers/facemasksReducer'
+import { BrowserRouter } from 'react-router-dom'
 
 const reducer = combineReducers({
   gloves: glovesReducer,
@@ -17,9 +18,9 @@ const reducer = combineReducers({
 
 ReactDOM.render(
   <Provider store={store(reducer)}>
-    {/*<BrowserRouter>*/}
-    <App/>
-    {/*</BrowserRouter>*/}
+    <BrowserRouter>
+      <App/>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 )
